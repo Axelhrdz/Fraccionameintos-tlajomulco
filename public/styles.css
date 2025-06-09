@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Open Sans", sans-serif;
     margin: 0;
     padding: 20px;
     background-color: #222;
@@ -7,6 +9,10 @@ body {
   }
   
   .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: inherit;
     color: inherit;
     max-width: 1000px;
@@ -61,3 +67,26 @@ body {
   .status-rejected {
     color: red;
   }
+  .tableGrid{
+    color: #ddd;
+  }
+
+  /* custom styles */
+  .title{
+    font-weight: 300;
+  }
+
+
+
+  /* Row background colors based on categoria */
+.ag-row .vigente-row {
+    background-color: #e6f7e6 !important; /* Light green */
+}
+
+.ag-row .en-proceso-row {
+background-color: #fffae6 !important; /* Light yellow */
+}
+
+.ag-row .irregular-row {
+background-color: #f2f2f2 !important; /* Light gray */
+}
