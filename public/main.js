@@ -9,7 +9,8 @@ document.addEventListener('DOMContentLoaded', function(){
                 'vigencia/inicio': '02/05/2000', 
                 'vigencia/final': 64950, 
                 convenio: true ,
-                observaciones: 'Convenio vigente hasta 2027'
+                observaciones: 'Convenio vigente hasta 2027',
+                pdf_convenio: "/documents/test-convenio.pdf"
             },
             { 
                 nombre: "Bosques de Santa Anita", 
@@ -89,9 +90,15 @@ document.addEventListener('DOMContentLoaded', function(){
             {
                 field: 'observaciones'
             },
-            {
-                field: 'pdf convenio'
-            },
+            { 
+                field: "pdf_convenio",
+                headerName: "PDF Convenio",
+                cellRenderer: function(params) {
+                    if (!params.value) return '';
+                    const fileName = params.value.split('/').pop();
+                    return `<a href="${params.value}" target="_blank" class="pdf-link">${fileName}</a>`;
+                }
+            }
         ],
     };
     

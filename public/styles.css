@@ -84,9 +84,27 @@ body {
 }
 
 .ag-row .en-proceso-row {
-background-color: #fffae6 !important; /* Light yellow */
+    background-color: #fffae6 !important; /* Light yellow */
 }
 
 .ag-row .irregular-row {
-background-color: #f2f2f2 !important; /* Light gray */
+    background-color: #f2f2f2 !important; /* Light gray */
 }
+
+
+/* pdf styling*/
+.pdf-link {
+    color: #0066cc;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.pdf-link:hover {
+    text-decoration: underline;
+}
+
+.pdf-link::before {
+    content: "📄 ";
+    font-size: 1.1em;
+} 
+  
