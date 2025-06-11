@@ -1,0 +1,21 @@
+[
+    {
+        "nombre": "El Cielo Palomar",
+        "categoria": "irregular",
+        "fecha_fin_convenio": null,
+        "tiene_convenio": false,
+        "pdf_convenio_path": "",
+        "observaciones": "No tiene concesión o convenio, es un convenio con México inversiones. Según los últimos registros, el municipio no presta el servicio. Tienen título de pozo, pero a nombre de México inversiones. En junio de 2026 se vence convenio para tomar aguas residuales y tratarlas para regar el club de golf El Cielo.",
+        "autosuficiente": false
+    },
+    {
+        "nombre": "Balcones de la Calera",
+        "categoria": "irregular",
+        "fecha_fin_convenio": null,
+        "tiene_convenio": false,
+        "pdf_convenio_path": "",
+        "observaciones": "El agua es administrada por el desarrollador, no tiene redes de drenaje. Según últimos registros, no quieren entregar el título de pozo al municipio para que sea concesión.",
+        "autosuficiente": false
+    }
+    
+]

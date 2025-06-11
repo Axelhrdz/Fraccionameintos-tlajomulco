@@ -24,7 +24,7 @@ async function importFraccionamientos() {
     console.log('Successfully connected to MySQL database!');
 
     // 2. Read the JSON file
-    const jsonFilePath = 'data.js'; // Adjust path if your file is elsewhere
+    const jsonFilePath = 'data.json'; // Adjust path if your file is elsewhere
     const jsonData = await fs.readFile(jsonFilePath, 'utf8');
     const fraccionamientos = JSON.parse(jsonData);
     console.log(`Read ${fraccionamientos.length} records from ${jsonFilePath}`);
@@ -37,7 +37,7 @@ async function importFraccionamientos() {
     // 3. Define columns and prepare values for batch insert
     // IMPORTANT: Ensure this list exactly matches your MySQL table columns
     // and the order of `values` mapping.
-    const columns = 'nombre, categoria, fecha_fin_convenio, tiene_convenio, pdf_convenio_path, observaciones';
+    const columns = 'nombre, categoria, fecha_fin_convenio, tiene_convenio, pdf_convenio_path, observaciones, autosuficiente';
 
     const values = fraccionamientos.map(f => [
       f.nombre,
@@ -46,6 +46,7 @@ async function importFraccionamientos() {
       f.tiene_convenio,
       f.pdf_convenio_path,
       f.observaciones,
+      f.autosuficiente
     ]);
 
     // 4. Perform the batch insert

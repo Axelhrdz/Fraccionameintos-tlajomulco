@@ -5,18 +5,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Condo Status Verification</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css">
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community/styles/ag-theme-alpine.css"> -->
+
   
   <script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js"></script>
   <script src="main.js"></script>
 </head>
 <body>
+  <nav class="navContainer">
+    <h2 class="navTitle">APA Asistente</h2>
+    <i class="fa-solid fa-bars user-icon"></i>
+  </nav>
   <div class="container">
     <h1 class="title">Fraccionamientos Tlajomulco</h1>
+    <p id="summaryText">Registro del estatus de todos los fraccionamientos del municpio, Tlajomulco de Zuñiga a fecha actual, Junio de 2025</p>
     <!-- <div class="controls">
       <input type="text" id="searchInput" placeholder="Buscar fraccionamiento">
       <button id="refreshBtn">Recargar</button>
     </div> -->
-    <div id="myGrid" class="ag-theme-material" style="height: 500px; width: 90vw;">
+    <div id="myGrid" class="ag-theme-quartz" style="height: 500px; width: 90vw;">
+
+
+      <!-- Modal observaciones -->
+      <div id="detailsModal" class="modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modalHeader">Detalles del Fraccionamiento</h2>
+            <span class="close-button">&times;</span>
+          </div>
+          <div class="modal-body">
+            <div class="flex-modal">
+              <div>
+                <p class="spanDataModal">Nombre: <span id="modalNombre"></span></p>
+                <!-- <p><strong>Inicio Convenio:</strong> <span id="modalInicioConvenio"></span></p> -->
+                <p class="spanDataModal">Fin Convenio: <span id="modalFinConvenio"></span></p>
+                <p class="spanDataModal">Estatus: <span id="modalEstatus"></span></p>
+                <p class="spanDataModal">Convenio PDF: <span id="modalPdfLink"></span></p>
+              </div>
+  
+              <div>
+                <p class="spanDataModal">Numero de Cuentas: n/a</p>
+                <p class="spanDataModal">Cuentas saldo vencido: n/a</p>
+                <p class="spanDataModal">Cuentas al corriente: n/a</p>
+              </div>
+
+            </div>
+            <p><strong>Observaciones:</strong> <span id="modalObservaciones"></span></p>
+          </div>
+        </div>
+      </div>
 
     </div>
   </div>

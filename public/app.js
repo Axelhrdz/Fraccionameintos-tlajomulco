@@ -22,9 +22,20 @@
 
 document.addEventListener("DOMContentLoaded", () => {
     const gridDiv = document.querySelector("#myGrid");
+    const addBtn = document.querySelector("#addFraccionamientosBtn");
+
+    // Modal elements
+    const detailsModal = document.getElementById("detailsModal");
+    const closeButton = detailsModal.querySelector(".close-button");
+    const modalNombre = document.getElementById("modalNombre");
+    // const modalInicioConvenio = document.getElementById("modalInicioConvenio");
+    const modalFinConvenio = document.getElementById("modalFinConvenio");
+    const modalEstatus = document.getElementById("modalEstatus");
+    const modalPdfLink = document.getElementById("modalPdfLink");
+    const modalObservaciones = document.getElementById("modalObservaciones");
 
 
-
+    // HELPER FUNCTIONS
     //format column dates
     const formatDate = (dateString) => {
       if(!dateString){
@@ -67,6 +78,107 @@ document.addEventListener("DOMContentLoaded", () => {
       // Return the DOM element
       return linkElement;
     };
+
+
+    // Modal observations
+    const observationsCellRenderer = (params) => {
+      const observations = params.value;
+      const cellDiv = document.createElement('div');
+      cellDiv.style.cursor = 'pointer'; // Indicate it's clickable
+      // cellDiv.style.textDecoration = 'underline';
+      cellDiv.style.color = '#757575';
+      cellDiv.style.fontWeight = 'bold';
+      cellDiv.classList.add('observButton');
+  
+      // Display a truncated version or a "Click to view" message
+      const displayValue = observations && observations.length > 50
+        ? observations.substring(0, 47) + '...' // Truncate long observations
+        : observations || 'Ver Detalles'; // If null/empty, show "Ver Detalles"
+  
+      cellDiv.textContent = displayValue;
+      cellDiv.title = 'Click para ver detalles completos'; // Tooltip
+  
+      // Attach click event listener
+      cellDiv.addEventListener('click', () => {
+        // Access the full row data from params.data
+        showDetailsModal(params.data);
+      });
+  
+      return cellDiv;
+    };
+
+
+    // Show modal with data
+    const showDetailsModal = (data) => {
+      modalNombre.textContent = data.nombre || 'N/A';
+      // modalInicioConvenio.textContent = formatDate(data.fecha_inicio_convenio);
+      modalFinConvenio.textContent = formatDate(data.fecha_fin_convenio);
+      modalEstatus.textContent = data.tiene_convenio ? 'Activo' : 'Inactivo';
+  
+      // Handle PDF link within modal
+      if (data.pdf_convenio_path) {
+        const existingLink = modalPdfLink.querySelector('a');
+        if (existingLink) modalPdfLink.removeChild(existingLink); // Remove old link if any
+        const link = document.createElement('a');
+        link.href = data.pdf_convenio_path;
+        link.target = '_blank';
+        link.textContent = 'Abrir PDF';
+        modalPdfLink.appendChild(link);
+      } else {
+        modalPdfLink.textContent = 'N/A';
+        const existingLink = modalPdfLink.querySelector('a'); // Clear old link if no new one
+        if (existingLink) modalPdfLink.removeChild(existingLink);
+      }
+  
+      modalObservaciones.textContent = data.observaciones || 'Sin observaciones adicionales.';
+  
+      detailsModal.style.display = "flex"; // Use flex to center with CSS
+    };
+
+
+    // --- NEW: Function to close the modal ---
+    const closeDetailsModal = () => {
+      detailsModal.style.display = "none";
+    };
+
+    // --- NEW: Event listeners for closing modal ---
+    closeButton.addEventListener('click', closeDetailsModal);
+    // Close when clicking outside the modal content
+    window.addEventListener('click', (event) => {
+      if (event.target == detailsModal) {
+        closeDetailsModal();
+      }
+    });
+
+
+    // Autosuficiente format
+
+    // const formatAuto = (params) => {
+    //   if(params == 0){
+    //     console.log('param seen');
+    //   }
+    // }
+    const autosuficienteCellRenderer = (params) => {
+      const cellValue = params.value === 1 || params.value === true;
+      
+      const container = document.createElement('div');
+      container.style.display = 'flex';
+      container.style.justifyContent = 'center';
+      container.style.alignItems = 'center';
+      
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.checked = cellValue;
+      checkbox.disabled = true; // Make it read-only
+      
+      container.appendChild(checkbox);
+      return container;
+    };
+
+
+
+
+
   
     // Define column definitions
     const columnDefs = [
@@ -106,9 +218,21 @@ document.addEventListener("DOMContentLoaded", () => {
             cellRenderer: pdfLinkCellRenderer,
         },
         {
+          headerName: 'Autosuficiente',
+          field: 'autosuficiente',
+          cellRenderer: autosuficienteCellRenderer, // Use the custom renderer
+          // Or if you prefer text representation:
+          // valueFormatter: (params) => params.value ? 'Sí' : 'No',
+          filter: 'agBooleanColumnFilter', // Enable boolean filtering
+          filterParams: {
+            cellRenderer: autosuficienteCellRenderer // Optional: show checkboxes in filter
+          }
+        },
+        {
             headerName: 'Observaciones',
             field: 'observaciones',
-            editable: true
+            editable: true,
+            cellRenderer: observationsCellRenderer,
         },
     ];
   

@@ -3,9 +3,10 @@
 body {
     font-family: "Open Sans", sans-serif;
     margin: 0;
-    padding: 20px;
-    background-color: #222;
+    /* padding: 20px; */
+    background-color: #1a1a1a;
     color: #fff;
+    width: 100%;
   }
   
   .container {
@@ -20,7 +21,7 @@ body {
     /* background: white; */
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    /* box-shadow: 0 2px 4px rgba(0,0,0,0.1); */
   }
   
   .controls {
@@ -73,7 +74,13 @@ body {
 
   /* custom styles */
   .title{
-    font-weight: 300;
+    font-weight: 400;
+  }
+  #myGrid{
+    background-color: #222;
+  }
+  #summaryText{
+    color: #ffc727;
   }
 
 
@@ -107,4 +114,159 @@ body {
     content: "📄 ";
     font-size: 1.1em;
 } 
-  
+
+
+/* heade div nav */
+.user-icon{
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.navContainer{
+  background-color: #343434;
+  color: #fff;
+  box-sizing: border-box;
+  width: 100%;
+  height: 3.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  padding-right: 40px;
+  padding-left: 40px;
+  transition: 0.4s;
+}
+.navContainer:hover{
+  background-color: #1a1a1a;
+  color: #fff;
+}
+.navTitle{
+  font-weight: 300;
+  font-size: 2rem;
+  cursor: pointer;
+}
+.navTitle:hover{
+  color: orange;
+}
+
+
+
+/* modal view test - observaciones */
+.modal{
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  background-color: #fffcf7;
+  color: #000;
+  margin: auto; /* Center the modal vertically and horizontally */
+  padding: 25px;
+  border: 1px solid #888;
+  width: 60%; /* Could be a fixed width or max-width */
+  height: auto;
+  max-width: 80%; /* Max width for readability */
+
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+  /* border-radius: 8px; */
+  position: relative; /* Needed for close button positioning */
+}
+.modalHeader{
+  color: #008ce2;
+  font-weight: 400;
+}
+.spanDataModal{
+  color: #5f5f5f;
+}
+
+
+
+/* Add Animation */
+@keyframes animatetop {
+  from {top: -300px; opacity: 0}
+  to {top: 0; opacity: 1}
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.close-button {
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: black;
+  text-decoration: none;
+}
+
+.modal-body{
+  display: flex;
+  flex-direction: column;
+}
+.flex-modal{
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid #eee;
+}
+
+.modal-body p {
+  margin-bottom: 10px;
+}
+.modal-body strong {
+  display: inline-block;
+  min-width: 120px; /* Align labels */
+}
+
+.ag-grid-button-cell {
+  display: flex; /* Use flexbox to center content */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 100%; /* Ensure it fills the cell height */
+  padding: 5px 8px; /* Padding inside the button */
+  margin: 2px; /* Margin around the button within the cell */
+  background-color: #007bff; /* Primary button color */
+  color: white; /* Text color */
+  border: 1px solid #0056b3; /* Darker border */
+  border-radius: 4px; /* Slightly rounded corners */
+  cursor: pointer; /* Indicate it's clickable */
+  transition: background-color 0.2s ease, border-color 0.2s ease; /* Smooth transition for hover */
+  text-align: center; /* Ensure text is centered if it wraps */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  overflow: hidden; /* Hide overflow if text is too long and cannot truncate */
+  text-overflow: ellipsis; /* Add ellipsis for overflowed text (works for single line) */
+  white-space: nowrap; /* Keep text on a single line for ellipsis */
+}
+
+.observButton:hover{
+  color: #008ce2 !important;
+  transition: 0.2s;
+  scale: 1.01;
+  font-weight: 500;
+}
