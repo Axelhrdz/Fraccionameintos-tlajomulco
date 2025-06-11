@@ -218,6 +218,12 @@ document.addEventListener("DOMContentLoaded", () => {
             cellRenderer: pdfLinkCellRenderer,
         },
         {
+          headerName: 'Observaciones',
+          field: 'observaciones',
+          editable: true,
+          cellRenderer: observationsCellRenderer,
+        },
+        {
           headerName: 'Autosuficiente',
           field: 'autosuficiente',
           cellRenderer: autosuficienteCellRenderer, // Use the custom renderer
@@ -227,12 +233,6 @@ document.addEventListener("DOMContentLoaded", () => {
           filterParams: {
             cellRenderer: autosuficienteCellRenderer // Optional: show checkboxes in filter
           }
-        },
-        {
-            headerName: 'Observaciones',
-            field: 'observaciones',
-            editable: true,
-            cellRenderer: observationsCellRenderer,
         },
     ];
   
