@@ -4,6 +4,7 @@ require("dotenv").config(); // Load environment variables from .env file
 const express = require("express");
 const mysql = require("mysql2/promise"); // Use promise-based version
 const cors = require("cors");
+const path = require("path");
 
 const app = express();
 const port = process.env.PORT || 3000; // Backend will run on port 3000
@@ -48,8 +49,14 @@ app.get("/api/fraccionamientos", async (req, res) => {
 });
 
 // Basic root route for testing
+// app.get("/", (req, res) => {
+//   res.send("Backend is running!");
+// });
+
+
+// 🏠 SERVE YOUR MAIN HTML FILE - Replace the "Backend is running!" route
 app.get("/", (req, res) => {
-  res.send("Backend is running!");
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // Start the server

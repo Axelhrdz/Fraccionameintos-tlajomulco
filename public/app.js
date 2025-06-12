@@ -237,12 +237,13 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
   
     // Function to fetch data and initialize the grid
+    const API_BASE = window.location.origin;
     async function initializeGrid() {
       let rowData = [];
       try {
         // Replace with your actual backend endpoint
         // Using JSONPlaceholder for a public example
-        const response = await fetch("http://localhost:3000/api/fraccionamientos");
+        const response = await fetch(`${API_BASE}/api/fraccionamientos`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
