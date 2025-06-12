@@ -14,12 +14,13 @@ app.use(cors());
 app.use(express.json()); // To parse JSON request bodies
 
 // Database connection pool (more efficient than creating new connection for each request)
+// Database connection pool
 const pool = mysql.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE,
-  port: process.env.DB_PORT,
+  host: process.env.DB_HOST || process.env.MYSQL_HOST,
+  user: process.env.DB_USER || process.env.MYSQL_USER,
+  password: process.env.DB_PASSWORD || process.env.MYSQL_PASSWORD,
+  database: process.env.DB_DATABASE || process.env.MYSQL_DATABASE,
+  port: process.env.DB_PORT || process.env.MYSQL_PORT,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
